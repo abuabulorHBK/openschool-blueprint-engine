@@ -1,18 +1,84 @@
-# React + Vite
+# 🏫 OpenSchool Blueprint Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> **Free, open-source school infrastructure modeling, 2D architectural CAD floor plan generator, real-time African cost calculator, and bankable PDF tender export suite.**
 
-Currently, two official plugins are available:
+[![Deploy to GitHub Pages](https://github.com/abuabulorHBK/openschool-blueprint-engine/actions/workflows/deploy.yml/badge.svg)](https://github.com/abuabulorHBK/openschool-blueprint-engine/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🌟 Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**OpenSchool Blueprint Engine** empowers NGOs, governments, educational trusts, community groups, and architects to plan, cost, design, and export bankable tender documents for modern secondary schools.
 
-## Expanding the Oxlint configuration
+The platform is purpose-built for the African continent and Cambridge curriculum (IGCSE / AS / A-Level) standards across 9 African countries (Tanzania, Kenya, Uganda, Rwanda, Ghana, Nigeria, South Africa, Zambia, Zimbabwe).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-# openschool-blueprint-engine
-# openschool-blueprint-engine
+### 🚀 Key Capabilities
+
+- 📐 **Interactive 2D Floor Plan CAD Engine**: Procedural SVG architectural layouts with wing zoning (STEM, Humanities, Admin, Sports, Quadrangle).
+- 💰 **Real-Time African Cost Estimator**: Localized construction rates ($/m²), equipment catalogs, and currency conversions.
+- 📦 **Automated Bill of Quantities (BOQ)**: Comprehensive materials, civil works, electrical, plumbing, and furnishings breakdown.
+- 📄 **Bankable Tender Export**: Instant in-browser PDF generation (`jsPDF`), DXF CAD export, CSV procurement schedules, and JSON interchange.
+- 🌐 **100% Client-Side / Zero-Backend**: Runs entirely in the browser with IndexedDB/LocalStorage persistence. Zero server cost, zero tracking, works anywhere worldwide.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: React 19 + Vite
+- **Icons**: Lucide React
+- **Exporting**: jsPDF, jsPDF-AutoTable, DXF Generator
+- **Storage**: IndexedDB with LocalStorage transparent fallback
+- **CI/CD**: GitHub Actions + GitHub Pages (Global Fastly Anycast CDN)
+
+---
+
+## 💻 Local Development
+
+### Prerequisites
+- Node.js 18+ or 20+
+- npm
+
+### Quickstart
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/abuabulorHBK/openschool-blueprint-engine.git
+cd openschool-blueprint-engine
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run dev
+```
+
+### Testing & Linting
+
+```bash
+# Run all JS tests
+npm run test:js
+
+# Run full test suite & linters
+npm run test:all
+
+# Build production bundle
+npm run build
+```
+
+---
+
+## 🌍 GitHub Pages Deployment
+
+The repository includes an automated GitHub Actions CI/CD workflow (`.github/workflows/deploy.yml`).
+
+1. Push code to `main`.
+2. Go to **Settings** > **Pages** in your GitHub repository.
+3. Select **Source**: `GitHub Actions`.
+4. Your application will be live at `https://abuabulorHBK.github.io/openschool-blueprint-engine/`.
+
+---
+
+## 📄 License
+
+MIT License. Open and free for global educational infrastructure planning.
