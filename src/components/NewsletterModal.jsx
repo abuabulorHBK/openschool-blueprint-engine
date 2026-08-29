@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { 
   X, 
   Mail, 
@@ -9,6 +8,7 @@ import {
   Sparkles,
   ShieldCheck
 } from 'lucide-react';
+import { submitNewsletterSubscription } from '../services/newsletter-service.js';
 
 export function NewsletterModal({ isOpen, onClose }) {
   const [email, setEmail] = useState(() => {
@@ -29,26 +29,26 @@ export function NewsletterModal({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !email.includes('@')) return;
 
     setStatus('loading');
 
-    setTimeout(() => {
-      try {
-        localStorage.setItem('openschool_newsletter_subscribed', 'true');
-        localStorage.setItem('openschool_newsletter_email', email);
-        localStorage.setItem('openschool_newsletter_prefs', JSON.stringify(preferences));
-      } catch {
-        // Ignore
-      }
+    try {
+      await submitNewsletterSubscription({
+        email,
+        source: 'Preferences Modal',
+        preferences
+      });
       setStatus('success');
       setTimeout(() => {
         onClose();
         setStatus('idle');
-      }, 1500);
-    }, 600);
+      }, 1600);
+    } catch {
+      setStatus('idle');
+    }
   };
 
   return (

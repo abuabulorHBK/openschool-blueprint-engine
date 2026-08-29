@@ -29,6 +29,7 @@ import { AFRICAN_COUNTRIES } from '../data/african-infrastructure';
 import { formatCurrency } from '../data/currencies';
 import { calculateProjectFinancials } from '../engine/cost-calculator';
 import { computeStaffingRequirements } from '../data/cambridge-curriculum';
+import { submitNewsletterSubscription } from '../services/newsletter-service.js';
 
 export function ExportHub({ schoolConfig, rooms = [] }) {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
@@ -371,20 +372,21 @@ export function ExportHub({ schoolConfig, rooms = [] }) {
   };
 
   // Newsletter submission
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!newsletterEmail || !newsletterEmail.includes('@')) return;
 
     setNewsletterStatus('loading');
-    setTimeout(() => {
-      try {
-        localStorage.setItem('openschool_newsletter_subscribed', 'true');
-        localStorage.setItem('openschool_newsletter_email', newsletterEmail);
-      } catch {
-        // Ignore
-      }
+    try {
+      await submitNewsletterSubscription({
+        email: newsletterEmail,
+        source: `Export Hub (${countryData.name} Cost Updates)`,
+        project: schoolConfig
+      });
       setNewsletterStatus('success');
-    }, 600);
+    } catch {
+      setNewsletterStatus('idle');
+    }
   };
 
   return (

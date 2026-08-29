@@ -7,6 +7,7 @@ import {
   Sparkles, 
   BellRing
 } from 'lucide-react';
+import { submitNewsletterSubscription } from '../services/newsletter-service.js';
 
 export function NewsletterFooter({ onOpenNewsletterModal }) {
   const [email, setEmail] = useState('');
@@ -19,23 +20,22 @@ export function NewsletterFooter({ onOpenNewsletterModal }) {
     }
   });
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!email || !email.includes('@')) return;
 
     setStatus('loading');
 
-    // Simulate API request (or connect to Formspree, Mailchimp, Resend, or Google Sheets webhook)
-    setTimeout(() => {
-      try {
-        localStorage.setItem('openschool_newsletter_subscribed', 'true');
-        localStorage.setItem('openschool_newsletter_email', email);
-      } catch {
-        // Ignore
-      }
+    try {
+      await submitNewsletterSubscription({
+        email,
+        source: 'Global Application Footer'
+      });
       setStatus('success');
       setIsSubscribed(true);
-    }, 700);
+    } catch {
+      setStatus('idle');
+    }
   };
 
   return (
