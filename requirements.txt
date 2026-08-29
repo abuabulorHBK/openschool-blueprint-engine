@@ -1,0 +1,3 @@
+# Optional dependencies for OpenSchool Blueprint Engine Docling Ingestion Pipeline
+docling>=2.0.0
+pypdf>=4.0.0
